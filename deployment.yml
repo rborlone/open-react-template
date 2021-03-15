@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deploy-front
+  labels:
+    app: my-front-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-front-app
+  template:
+    metadata:
+      labels:
+        app: my-front-app
+    spec:
+      containers:
+        - name: front-react
+          image: demorbe.azurecr.io/frontdemo:latest
+          ports:
+            - name: web
+              containerPort: 80
+              protocol: TCP
